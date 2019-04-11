@@ -20,10 +20,25 @@ describe('server.js', () => {
         });
 
     });
-    it('shollud reutn created caracters', () => {
+    it('shollud return created caracters', () => {
       const char = {name: 'Prince Valian'}
       const response = await request(server).post('/chars').send(char)
       expect(response.body).toContaian('prince Valian')
+    });
+  });
+
+  describe('DELETE/', () => {
+    it('should return a del status code', () => {
+      return request(server)
+        .del('/chars')
+        .then(res => {
+          expect(res.status).toBe(202);
+        });
+    });
+    it('should delete a charter', () => {
+      const char = {name: 'Prince Valian'}
+      const response = await request(server).del('/chars').remove(char)
+      expect(response.body).toBe(null)
     });
   });
 });
