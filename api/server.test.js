@@ -13,7 +13,17 @@ describe('server.js', () => {
   });
   describe('POST/', () => {
     it('should respond created resourse', () => {
-      return request(server).post();
+      return request(server)
+        .post('/chars')
+        .then(res => {
+          expect(res.status).toBe(201);
+        });
+
+    });
+    it('shollud reutn created caracters', () => {
+      const char = {name: 'Prince Valian'}
+      const response = await request(server).post('/chars').send(char)
+      expect(response.body).toContaian('prince Valian')
     });
   });
 });
