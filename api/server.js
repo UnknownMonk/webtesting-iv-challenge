@@ -17,4 +17,12 @@ server.post('/chars', async (req, res) => {
   }
 });
 
+server.delete('/chars', async (req, res) => {
+  try {
+    res.status(200).json({ message: 'Swarts again' });
+  } catch (err) {
+    res.status(500).json({ error: 'No swarts for you! ' });
+  }
+});
+
 module.exports = server;
