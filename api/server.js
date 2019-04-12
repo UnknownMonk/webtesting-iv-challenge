@@ -1,7 +1,7 @@
 const express = require('express');
 
 const server = express();
-
+const models = require('../models/models');
 server.use(express.json());
 
 server.get('/', async (req, res) => {
@@ -11,17 +11,20 @@ server.get('/', async (req, res) => {
 
 server.post('/chars', async (req, res) => {
   try {
-    res.status(201).json({ message: 'Hey yoooo' });
+    res.status(201).json({ message: 'Let the schwartz be wit chuuuuu' });
   } catch (err) {
-    res.status(500).json({ error: 'No swarts for you! ' });
+    res.status(500).json({ error: 'No schwartz for you! ' });
   }
 });
 
-server.delete('/chars', async (req, res) => {
+server.delete('/chars/id;', async (req, res) => {
   try {
-    res.status(200).json({ message: 'Swarts again' });
+    const count = await models.remove(req.params.id);
+    if (count > 0) {
+      res.status(204).json({ message: 'Get the schwartz out of here  ' });
+    }
   } catch (err) {
-    res.status(500).json({ error: 'No swarts for you! ' });
+    res.status(500).json({ error: 'No schwartz for you! ' });
   }
 });
 
